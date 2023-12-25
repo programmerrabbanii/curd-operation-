@@ -12,11 +12,12 @@ const router=createBrowserRouter([
     children:([
       {
         path:"/",
-        element:<Home></Home>
+        element:<Home></Home> 
       },
       {
         path:"/getusers",
-        element:<GetUsers></GetUsers>
+        element:<GetUsers></GetUsers>,
+        loader:()=>fetch('http://localhost:5000/users')
       }
     ])
   }

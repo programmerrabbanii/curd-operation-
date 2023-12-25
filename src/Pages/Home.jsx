@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 const Home = () => {
     const handlerPost=event=>{
@@ -20,6 +21,14 @@ const Home = () => {
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
+            if(data.insertedId){
+                Swal.fire({
+                    title: "Thank You",
+                    text: "Your Data successfully added ",
+                    icon: "Success"
+                  });
+                  form.reset('')
+            }
         })
         console.log(allData)
         
