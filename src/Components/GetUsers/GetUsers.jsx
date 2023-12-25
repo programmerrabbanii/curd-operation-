@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const GetUsers = () => {
+    const loddedUsers=useLoaderData()
+    const [users,setUser]=useState(loddedUsers)
+    
     const handlerDelete=_id=>{
         console.log('delte', _id)
         fetch(`http://localhost:5000/users/${_id}`,{
@@ -9,10 +13,16 @@ const GetUsers = () => {
         })
         .then(res=>res.json())
         .then(data=>{
+            if(data.deletedCount >0){
+                alert ('deleted successfully')
+            }
+            const remaining=users.filter(user=> user._id !== _id);
+            setUser(remaining)
             console.log(data)
+            
         })
     }
-    const users=useLoaderData()
+   
     return (
         <div className="text-center">
             <h2 className="text-center capitalize text-2xl"> Get All Users Data here....</h2>
